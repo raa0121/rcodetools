@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/unit'
 
 module TestFunctional
   DIR = File.expand_path(File.dirname(__FILE__))
@@ -28,7 +28,7 @@ module TestFunctional
     end
   end
 
-  class TestXmpfilter < Test::Unit::TestCase
+  class TestXmpfilter < MiniTest::Unit::TestCase
     extend DefineFunctionalTests
     tests = {
       :simple_annotation => [], :unit_test => ["-u"], :rspec => ["-s"],
@@ -40,7 +40,7 @@ module TestFunctional
     define_functional_tests "xmpfilter", File.expand_path(DIR + '/../bin/xmpfilter'), tests
   end
 
-  class TestRctComplete < Test::Unit::TestCase
+  class TestRctComplete < MiniTest::Unit::TestCase
     extend DefineFunctionalTests
     tests = {
       :completion_rbtest => [ "--rbtest", "--line=6" ],
@@ -50,7 +50,7 @@ module TestFunctional
     define_functional_tests "rct-complete", File.expand_path(DIR + '/../bin/rct-complete'), tests
   end
 
-  class TestRctDoc < Test::Unit::TestCase
+  class TestRctDoc < MiniTest::Unit::TestCase
     extend DefineFunctionalTests
     tests = {
       :doc_rbtest => [ "--rbtest", "--line=6" ],
@@ -62,7 +62,7 @@ module TestFunctional
 
 
   # Other tests are in test_run.rb
-  class TestRctCompleteTDC < Test::Unit::TestCase
+  class TestRctCompleteTDC < MiniTest::Unit::TestCase
     test = :completion_in_method
     inputfile = "#{DIR}/data/#{test}-input.rb"
     outputfile = "#{DIR}/data/#{test}-output.rb"

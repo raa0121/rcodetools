@@ -1,8 +1,8 @@
 $: << ".." << "../lib"
 require 'rcodetools/completion'
-require 'test/unit'
+require 'minitest/unit'
 
-class TestXMPCompletionFilter < Test::Unit::TestCase
+class TestXMPCompletionFilter < MiniTest::Unit::TestCase
   include Rcodetools
   def doit(code, lineno, column=nil, options={})
     xmp = XMPCompletionFilter.new options
@@ -518,7 +518,7 @@ EOC
 end
 
 
-class TestXMPCompletionVerboseFilter < Test::Unit::TestCase
+class TestXMPCompletionVerboseFilter < MiniTest::Unit::TestCase
   include Rcodetools
   def doit(code, lineno, column=nil, options={})
     xmp = XMPCompletionVerboseFilter.new options

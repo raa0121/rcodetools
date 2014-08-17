@@ -1,9 +1,9 @@
 require 'fileutils'
-require 'test/unit'
+require 'minitest/unit'
 require 'ruby_toggle_file'
 require 'tmpdir'
 
-class TestRubyToggleFile < Test::Unit::TestCase
+class TestRubyToggleFile < MiniTest::Unit::TestCase
   WORK_DIR = "#{Dir.tmpdir}/zdsfwfwejiotest".freeze
   FileUtils.rm_rf WORK_DIR
 
@@ -120,15 +120,15 @@ class TestRubyToggleFile < Test::Unit::TestCase
   end
 
   def test_test_file__rails_models
-    create "app/models/m.rb", "test/unit/m_test.rb"
+    create "app/models/m.rb", "minitest/unit/m_test.rb"
     rtf = RubyToggleFile.new
-    assert_equal _("test/unit/m_test.rb"), rtf.ruby_toggle_file(_("app/models/m.rb"))
+    assert_equal _("minitest/unit/m_test.rb"), rtf.ruby_toggle_file(_("app/models/m.rb"))
   end
 
   def test_test_file__rails_lib
-    create "lib/l.rb", "test/unit/test_l.rb", "app/models/m.rb"
+    create "lib/l.rb", "minitest/unit/test_l.rb", "app/models/m.rb"
     rtf = RubyToggleFile.new
-    assert_equal _("test/unit/test_l.rb"), rtf.ruby_toggle_file(_("lib/l.rb"))
+    assert_equal _("minitest/unit/test_l.rb"), rtf.ruby_toggle_file(_("lib/l.rb"))
   end
 
 
@@ -139,20 +139,20 @@ class TestRubyToggleFile < Test::Unit::TestCase
   end
 
   def test_implementation_file__rails_models
-    create "app/models/m.rb", "test/unit/m_test.rb"
+    create "app/models/m.rb", "minitest/unit/m_test.rb"
     rtf = RubyToggleFile.new
-    assert_equal _("app/models/m.rb"), rtf.ruby_toggle_file(_("test/unit/m_test.rb"))
+    assert_equal _("app/models/m.rb"), rtf.ruby_toggle_file(_("minitest/unit/m_test.rb"))
   end
 
   def test_implementation_file__rails_lib
-    create "lib/l.rb", "test/unit/test_l.rb", "app/models/m.rb"
+    create "lib/l.rb", "minitest/unit/test_l.rb", "app/models/m.rb"
     rtf = RubyToggleFile.new
-    assert_equal _("lib/l.rb"), rtf.ruby_toggle_file(_("test/unit/test_l.rb"))
+    assert_equal _("lib/l.rb"), rtf.ruby_toggle_file(_("minitest/unit/test_l.rb"))
   end
 end
 
 
-class TestRunHooksWithArgsUntilSuccess < Test::Unit::TestCase
+class TestRunHooksWithArgsUntilSuccess < MiniTest::Unit::TestCase
   def m001(x) nil end
   private
   def m002(x) false end

@@ -93,7 +93,7 @@ class XMPFilter
       basedir = common_path(test_script, filename)
       relative_filename = filename[basedir.length+1 .. -1].sub(%r!^lib/!, '')
       @evals << %Q!$LOADED_FEATURES << #{relative_filename.dump}!
-      @evals << safe_require_code('test/unit')
+      @evals << safe_require_code('minitest/unit')
       @evals << %Q!load #{test_script.dump}!
     end
     test_method = get_test_method_from_lineno(test_script, test_method.to_i) if test_method =~ /^\d/

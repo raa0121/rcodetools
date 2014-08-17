@@ -1,11 +1,11 @@
-require 'test/unit'
+require 'minitest/unit'
 module MethodArgsScriptConfig
   DIR      = File.join(File.dirname(__FILE__))
   SCRIPT   = File.join(DIR, "..", "bin", "rct-meth-args")
   DATAFILE = File.join(DIR, "data/method_args.data.rb")
 end
 
-class TestMethodArgs < Test::Unit::TestCase
+class TestMethodArgs < MiniTest::Unit::TestCase
   # (find-sh "cd ..; method_args.rb -n test/method_args.data.rb")
   include MethodArgsScriptConfig
   @@result = `ruby '#{SCRIPT}' -n '#{DATAFILE}'`.split(/\n/)
@@ -102,7 +102,7 @@ XXX
 end
 
 
-class TestTAGS < Test::Unit::TestCase
+class TestTAGS < MiniTest::Unit::TestCase
   include MethodArgsScriptConfig
 
   @@TAGS = `ruby '#{SCRIPT}' -t '#{DATAFILE}'`

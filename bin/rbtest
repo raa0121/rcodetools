@@ -4,18 +4,18 @@
 # Use and distribution subject to the terms of the Ruby license.
 
 USAGE = <<'XXX'
-Usage: rbtest SCRIPT [-S RUBY_INTERPRETER] [Test::Unit OPTIONS]
+Usage: rbtest SCRIPT [-S RUBY_INTERPRETER] [MiniTest::Unit OPTIONS]
 Usage: rbtest [-h] [--help] [--example]
 
-I am rbtest, embedded Test::Unit executor for one-file scripts.
+I am rbtest, embedded MiniTest::Unit executor for one-file scripts.
 Splitting a small script into many files (executables, libraries and tests) is cumbersome.
 And it is handy to put unit tests near implementations like D language, which has
 built-in unittest keyword.
 
-Embedded Test::Unit is simpler than vanilla Test::Unit.
-You do not have to define a Test::Unit::TestCase subclass,
+Embedded MiniTest::Unit is simpler than vanilla Test::Unit.
+You do not have to define a MiniTest::Unit::TestCase subclass,
 it is automagically defined and executed by me.
-Embedded Test::Unit uses =begin/=end comment blocks.
+Embedded MiniTest::Unit uses =begin/=end comment blocks.
 
 "=begin TEST_METHOD_NAME" blocks define test methods, eg. "=begin test_foo".
 "=begin rbtest" blocks define utility methods and setup/teardown methods.
@@ -37,9 +37,9 @@ XXX
 
 
 def first_test(script_filename)
-  "require 'test/unit';" +
+  "require 'minitest/unit';" +
   "load '#{script_filename}';" +
-  "class TestByRbtest < Test::Unit::TestCase;"
+  "class TestByRbtest < MiniTest::Unit::TestCase;"
 end
 
 =begin rbtest
@@ -70,7 +70,7 @@ XXX
 
 test_script = <<'XXX'
  #!/usr/bin/env ruby
- require 'test/unit';load 'f.rb';class TestByRbtest < Test::Unit::TestCase;def test0
+ require 'minitest/unit';load 'f.rb';class TestByRbtest < MiniTest::Unit::TestCase;def test0
  assert_equal(10, f(1))
  end
  
@@ -97,7 +97,7 @@ script = <<XXX
 XXX
 
 test_script = <<XXX
- require 'test/unit';load 'f.rb';class TestByRbtest < Test::Unit::TestCase;
+ require 'minitest/unit';load 'f.rb';class TestByRbtest < MiniTest::Unit::TestCase;
  def setup() end
  
  

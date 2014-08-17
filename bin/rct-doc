@@ -1,7 +1,7 @@
 #! /usr/local/bin/ruby18
-require 'rcodetools/xmpfilter'
-require 'rcodetools/doc'
-require 'rcodetools/options'
+require_relative '../lib/rcodetools/xmpfilter'
+require_relative '../lib/rcodetools/doc'
+require_relative '../lib/rcodetools/options'
 
 include Rcodetools
 options = DEFAULT_OPTIONS

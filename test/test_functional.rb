@@ -1,6 +1,6 @@
-require 'test/unit'
+require 'minitest/unit'
 require 'tempfile'
-class TestFunctional < Test::Unit::TestCase
+class TestFunctional < MiniTest::Unit::TestCase
   def self.parse_taf(filename)
     open(filename) do |io|
       delimiter=Regexp.union(io.gets)

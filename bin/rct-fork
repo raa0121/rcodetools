@@ -1,6 +1,6 @@
 #! /usr/local/bin/ruby18
 
-require 'rcodetools/fork'
+require_relative '../lib/rcodetools/fork'
 
 Rcodetools::Fork.start_server ARGV
 

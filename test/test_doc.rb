@@ -1,8 +1,8 @@
 $: << ".." << "../lib"
 require 'rcodetools/doc'
-require 'test/unit'
+require 'minitest/unit'
 
-class TestXMPDocFilter < Test::Unit::TestCase
+class TestXMPDocFilter < MiniTest::Unit::TestCase
   include Rcodetools
   def doit(code, lineno, column=nil, options={})
     xmp = XMPDocFilter.new options
@@ -428,7 +428,7 @@ EOC
   end
 end
 
-class TestXMPRiFilter < Test::Unit::TestCase
+class TestXMPRiFilter < MiniTest::Unit::TestCase
   include Rcodetools
   def doit(code, lineno, column=nil, options={})
     xmp = XMPRiFilter.new options

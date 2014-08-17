@@ -1,9 +1,9 @@
 
-require 'test/unit'
+require 'minitest/unit'
 $: << ".." << "../lib"
 require "rcodetools/xmptestunitfilter"
 
-class TestXMPTestUnitFilter < Test::Unit::TestCase
+class TestXMPTestUnitFilter < MiniTest::Unit::TestCase
   include Rcodetools
 
   ANNOTATION_VAR_INFERENCE_INPUT = <<EOF

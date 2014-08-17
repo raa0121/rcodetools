@@ -1458,11 +1458,11 @@ class Installer
     end
     $stderr.puts 'Running tests...' if verbose?
     begin
-      require 'test/unit'
+      require 'minitest/unit'
     rescue LoadError
-      setup_rb_error 'test/unit cannot loaded.  You need Ruby 1.8 or later to invoke this task.'
+      setup_rb_error 'minitest/unit cannot loaded.  You need Ruby 1.8 or later to invoke this task.'
     end
-    runner = Test::Unit::AutoRunner.new(true)
+    runner = MiniTest::Unit::AutoRunner.new(true)
     runner.to_run << TESTDIR
     runner.run
   end

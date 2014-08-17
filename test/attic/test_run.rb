@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/unit'
 require 'rcodetools/xmpfilter'
 require 'rcodetools/xmptestunitfilter'
 require 'rcodetools/completion'
@@ -6,7 +6,7 @@ require 'rcodetools/doc'
 require 'rcodetools/options'
 require 'stringio'
 
-class TestRun < Test::Unit::TestCase
+class TestRun < MiniTest::Unit::TestCase
   include Rcodetools
   DIR = File.expand_path(File.dirname(__FILE__))
 

@@ -1,11 +1,11 @@
 
-require 'test/unit'
+require 'minitest/unit'
 $: << ".." << "../lib"
 require "rcodetools/xmpfilter"
 require 'rubygems'
 require 'mocha'
 
-class TestXMPFilter < Test::Unit::TestCase
+class TestXMPFilter < MiniTest::Unit::TestCase
   include Rcodetools
   def test_extract_data__results
     marker = XMPFilter::MARKER
@@ -72,14 +72,14 @@ class TestXMPFilter < Test::Unit::TestCase
   end
 
   def test_initialize__test_script_1
-    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'test/unit'")
+    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'minitest/unit'")
     xmp = XMPFilter.new(:test_script=>"/path/to/test/test_ruby_toggle_file.rb",
                          :test_method=>"test_implementation_file_file_exist",
                          :filename=>"/path/to/lib/ruby_toggle_file.rb")
 
     evals_expected = [
       %q!$LOADED_FEATURES << "ruby_toggle_file.rb"!,
-      %q!require 'test/unit'!,
+      %q!require 'minitest/unit'!,
       %q!load "/path/to/test/test_ruby_toggle_file.rb"!,
       %q!Test::Unit::AutoRunner.run(false, nil, ["-n", "test_implementation_file_file_exist"])!
     ]
@@ -87,14 +87,14 @@ class TestXMPFilter < Test::Unit::TestCase
   end
 
   def test_initialize__test_script_2
-    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'test/unit'")
+    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'minitest/unit'")
     xmp = XMPFilter.new(:test_script=>"/path/to/test_ruby_toggle_file.rb",
                          :test_method=>"test_implementation_file_file_exist",
                          :filename=>"/path/to/ruby_toggle_file.rb")
 
     evals_expected = [
       %q!$LOADED_FEATURES << "ruby_toggle_file.rb"!,
-      %q!require 'test/unit'!,
+      %q!require 'minitest/unit'!,
       %q!load "/path/to/test_ruby_toggle_file.rb"!,
       %q!Test::Unit::AutoRunner.run(false, nil, ["-n", "test_implementation_file_file_exist"])!
     ]
@@ -104,12 +104,12 @@ class TestXMPFilter < Test::Unit::TestCase
   def test_initialize__test_script_3
     test_script = File.join(File.dirname(__FILE__), "data/sample_test_script.rb")
     filename = File.join(File.dirname(__FILE__), "data/sample.rb")
-    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'test/unit'")
+    XMPFilter.any_instance.stubs(:safe_require_code).returns("require 'minitest/unit'")
     xmp = XMPFilter.new(:test_script=>test_script, :test_method=>"4", :filename=>filename)
 
     evals_expected = [
       %q!$LOADED_FEATURES << "sample.rb"!,
-      %q!require 'test/unit'!,
+      %q!require 'minitest/unit'!,
       %Q!load #{test_script.dump}!,
       %q!Test::Unit::AutoRunner.run(false, nil, ["-n", "test_sample0"])!
     ]
@@ -189,7 +189,7 @@ XXX
 
 end
 
-class TestTempScript < Test::Unit::TestCase
+class TestTempScript < MiniTest::Unit::TestCase
   def test(script)
     Rcodetools::XMPFilter.new.__send__(:split_shbang,script)
   end

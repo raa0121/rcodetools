@@ -1,5 +1,5 @@
-require 'test/unit'
-class TestSample < Test::Unit::TestCase
+require 'minitest/unit'
+class TestSample < MiniTest::Unit::TestCase
   def test_sample0
     assert(true)
   end

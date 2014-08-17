@@ -35,24 +35,21 @@ module MethodAnalyzer
     return if klass == Class and id == :inherited
     return if klass == Module and id == :method_added
     return if klass == Kernel and id == :singleton_method_added
-    saved_crit = Thread.critical
-    Thread.critical = true
-    
-    the_self = eval("self",binding)
-    flag = Class === the_self ? "." : "#"
-    #klass = klass == Kernel ? Object : klass
-    fullname = "#{klass}#{flag}#{id}"
-    file.replace @@expand_path[file]
-    if event == 'call'
-      @@whereis << [file, line, fullname] if file !~ /\(eval\)$/
-      file, line, rest = caller(4)[0].split(/:/)
-      file.replace @@expand_path[file] # DRY
-      p caller(0) if $DEBUG
-      line = line.to_i
-    end
-    @@methods[file][line] << fullname  if event =~ /call/
-
-    Thread.critical = saved_crit
+    Thread.exclusive {
+      the_self = eval("self",binding)
+      flag = Class === the_self ? "." : "#"
+      #klass = klass == Kernel ? Object : klass
+      fullname = "#{klass}#{flag}#{id}"
+      file.replace @@expand_path[file]
+      if event == 'call'
+        @@whereis << [file, line, fullname] if file !~ /\(eval\)$/
+        file, line, rest = caller(4)[0].split(/:/)
+        file.replace @@expand_path[file] # DRY
+        p caller(0) if $DEBUG
+          line = line.to_i
+      end
+      @@methods[file][line] << fullname  if event =~ /call/
+    }
   end
 
   def self.at_exit__output_marshal

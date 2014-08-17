@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/unit'
 
 module ScriptConfig
   DIR      = File.join(File.expand_path(File.dirname(__FILE__)))
@@ -6,7 +6,7 @@ module ScriptConfig
   DATAFILE = File.join(DIR, "data", "method_analyzer-data.rb")
 end
 
-class MethodAnalyzerTextOutput < Test::Unit::TestCase
+class MethodAnalyzerTextOutput < MiniTest::Unit::TestCase
   include ScriptConfig
 
   # test (find-sh "ruby -r../method_analyzer data/method_analyzer-data.rb")
@@ -62,7 +62,7 @@ XXX
   
 end
 
-class MethodAnalyzerMarshalOutput < Test::Unit::TestCase
+class MethodAnalyzerMarshalOutput < MiniTest::Unit::TestCase
   include ScriptConfig
 
   METHOD_ANALYSIS = File.join(DIR, "method_analysis")

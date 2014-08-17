@@ -46,7 +46,7 @@ PKG_FILES = FileList[
 ]
 
 begin
-  require 'rake/gempackagetask'
+  require 'rubygems/packagetask'
   Spec = Gem::Specification.new do |s|
     s.name = "rcodetools"
     s.version = RCT_VERSION + PKG_REVISION

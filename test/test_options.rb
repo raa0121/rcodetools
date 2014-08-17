@@ -1,10 +1,10 @@
 $: << ".." << "../lib"
 require 'rcodetools/options'
-require 'test/unit'
+require 'minitest/unit'
 require 'tmpdir'
 require 'fileutils'
 
-class TestOptionHandler < Test::Unit::TestCase
+class TestOptionHandler < MiniTest::Unit::TestCase
   include Rcodetools
   include OptionHandler
 
