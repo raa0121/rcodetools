@@ -1,4 +1,4 @@
-#! /usr/local/bin/ruby18
+#! /usr/bin/env ruby
 require_relative '../lib/rcodetools/xmpfilter'
 require_relative '../lib/rcodetools/doc'
 require_relative '../lib/rcodetools/options'
